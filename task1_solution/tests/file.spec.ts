@@ -37,7 +37,7 @@ describe('File', ()=>{
         const ans1 = removeTempFile('C:\\Users\\SODIQ\\AppData\\Local\\Temp\\Balogun\\sodiq\\New Text Document.txt')
         expect(ans1).toBe(undefined);
         });
-    it('expect output to return undefined', () => {
+    it('expect output to nothing', () => {
         const ans1 = writeFile('C:\\Users\\SODIQ\\AppData\\Local\\Temp\\Balogun\\sodiq\\content.txt', 'HELLO WORLD')
         expect(ans1).toBe(void 0);
         });
