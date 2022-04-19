@@ -12,7 +12,7 @@ describe('File', ()=>{
         expect(createTempFilePath).toBeTruthy();
         
         });
-    it('testing if  a new text document is created for writeStream in the temp file directory', () => {
+    it('testing if  a new text document is created for writeStream in the temp file directory.', () => {
         const createTempFile = FileUtils.createTempFile(`${os.tmpdir()}/${folderPath}/${newDocument}`)
         expect(createTempFile).toBeTruthy();
         });
