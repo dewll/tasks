@@ -68,7 +68,9 @@ function removeTempFile(tempFilePath: string) {
 
 
 function removeDir(dirPath: string): Promise<void> {
+  if (dirPath.includes(tmpFolder())){
   return fs.emptyDir(dirPath);
+}
 }
 
 
