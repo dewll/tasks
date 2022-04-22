@@ -53,6 +53,12 @@ function createTempFolder(tempFolderPath: string): void {
   }
 }
 
+function ensureFolder(tempFolderPath: string): void {
+  if (!fs.existsSync(tempFolderPath)) {
+    fs.mkdirSync(tempFolderPath, { recursive: true });
+  }
+}
+
 function getFolderPath(filePath: string): string {
   return path.dirname(filePath);
 }
@@ -66,6 +72,19 @@ function removeTempFile(tempFilePath: string) {
   fs.unlinkSync(tempFilePath);
 }
 
+function writeFile(fileNamePath: string, data: any) {
+  const dirname = path.dirname(fileNamePath);
+  if (dirname) {
+    ensureFolder(dirname);
+  }
+  fs.writeFile(fileNamePath, JSON.stringify(data), function (err) {
+    if (err) throw err;
+  });
+}
+
+function readFile(fileNamePath: string): Buffer {
+  return fs.readFileSync(fileNamePath);
+}
 
 function removeDir(dirPath: string): Promise<void> {
   if (dirPath.includes(tmpFolder())){
