@@ -1,16 +1,17 @@
-import {FileUtils} from '../file';
+import { FileUtils } from '../file';
 
 const fileName = 'content.txt';
 const newDocument = 'New Text Document.txt'
 const folderPath = 'testFolder';
 
-describe('FileUtils', ()=>{
+describe('FileUtils', () => {
   it('testing if  temp file path was created and contain content.txt', () => {
-    const createTempFilePath = FileUtils.createTempFilePath(fileName,folderPath)
+    const createTempFilePath = FileUtils.createTempFilePath(fileName, folderPath)
     expect(createTempFilePath).toBeTruthy();
   });
   it('testing if  a new text document is created for writeStream in the temp file directory', () => {
-    const createTempFile = FileUtils.createTempFile(`${FileUtils.tmpFolder()}/${folderPath}/${newDocument}`)
+    const createTempFilePath = FileUtils.createTempFilePath(newDocument, folderPath)
+    const createTempFile = FileUtils.createTempFile(createTempFilePath);
     expect(createTempFile).toBeTruthy();
   });
   it(' testing if a file is downloaded and written to  New Text Document', () => {
@@ -34,7 +35,7 @@ describe('FileUtils', ()=>{
     expect(removeTempFile).toBe(undefined);
   });
   it('testing if the folderpath exit, if it exit remove the file inside it and if it does not exit do notting', () => {
-    const removeDir =  FileUtils.removeDir(`${FileUtils.tmpFolder()}/${folderPath}`)
+    const removeDir = FileUtils.removeDir(`${FileUtils.tmpFolder()}/${folderPath}`)
     expect(removeDir).toBeTruthy;
   });
 })

@@ -13,22 +13,19 @@ export const FileUtils = {
   getFileName,
   getFolderPath,
   createTempFolder,
-  tmpFolder,
 };
 
-function tmpFolder(){
-  return os.tmpdir();
-}
+const tmpFolder = os.tmpdir();
 
 function createTempFilePath(fileName: string, folderPath?: string): string {
   const components = folderPath ? [...folderPath.split('/'), fileName] : [fileName];
-  const tempFilePath = path.join(tmpFolder(), ...components);
+  const tempFilePath = path.join(tmpFolder, ...components);
 
   return tempFilePath;
 }
 
 function createTempFile(tempFilePath: string): WriteStream {
-  if (!tempFilePath.includes(tmpFolder())) {
+  if (!tempFilePath.includes(tmpFolder)) {
     throw new Error('Path should be inside tmp directory');
   }
   return fs.createWriteStream(tempFilePath);
@@ -87,7 +84,7 @@ function readFile(fileNamePath: string): Buffer {
 }
 
 function removeDir(dirPath: string): Promise<void> {
-  if (dirPath.includes(tmpFolder())){
+  if (dirPath.includes(tmpFolder)){
   return fs.emptyDir(dirPath);
 }
 }
