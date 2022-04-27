@@ -4,7 +4,6 @@ const fileName = 'content.txt'
 const newDocument = 'New Text Document.txt'
 const folderPath = 'testFolder';
 
-
 describe('FileUtils', () => {
   it('testing if  a new text document is created for writeStream in the temp file directory.', () => {
     const createTempFilePath = FileUtils.createTempFilePath(newDocument,folderPath)
