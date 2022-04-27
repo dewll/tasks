@@ -4,7 +4,7 @@ import * as fs from 'fs-extra';
 import * as https from 'https';
 import { WriteStream } from 'fs';
 
-const FileUtils = {
+export const FileUtils = {
   createTempFilePath,
   createTempFile,
   removeTempFile,
@@ -12,12 +12,24 @@ const FileUtils = {
   removeDir,
   getFileName,
   getFolderPath,
-  ensureFolder,
-  writeFile,
-  readFile,
+  createTempFolder,
 };
 
-export default FileUtils;
+const tmpFolder = os.tmpdir();
+
+function createTempFilePath(fileName: string, folderPath?: string): string {
+  const components = folderPath ? [...folderPath.split('/'), fileName] : [fileName];
+  const tempFilePath = path.join(tmpFolder, ...components);
+
+  return tempFilePath;
+}
+
+function createTempFile(tempFilePath: string): WriteStream {
+  if (!tempFilePath.includes(tmpFolder)) {
+    throw new Error('Path should be inside tmp directory');
+  }
+  return fs.createWriteStream(tempFilePath);
+}
 
 async function downloadTempFile(url: string, destinationPath: string): Promise<void> {
   const file = createTempFile(destinationPath);
@@ -31,18 +43,11 @@ async function downloadTempFile(url: string, destinationPath: string): Promise<v
   });
 }
 
-function createTempFilePath(fileName: string, folderPath?: string): string {
-  const components = folderPath ? [...folderPath.split('/'), fileName] : [fileName];
-  const tempFilePath = path.join(os.tmpdir(), ...components);
 
-  return tempFilePath;
-}
-
-function createTempFile(tempFilePath: string): WriteStream {
-  if (!tempFilePath.includes(os.tmpdir())) {
-    throw new Error('Path should be inside tmp directory');
+function createTempFolder(tempFolderPath: string): void {
+  if (!fs.existsSync(tempFolderPath)) {
+    fs.mkdirSync(tempFolderPath, { recursive: true });
   }
-  return fs.createWriteStream(tempFilePath);
 }
 
 function ensureFolder(tempFolderPath: string): void {
@@ -51,20 +56,17 @@ function ensureFolder(tempFolderPath: string): void {
   }
 }
 
-function getFileName(filePath: string): string {
-  return path.basename(filePath);
-}
-
 function getFolderPath(filePath: string): string {
   return path.dirname(filePath);
 }
 
-function removeTempFile(tempFilePath: string) {
-  fs.unlinkSync(tempFilePath);
+function getFileName(filePath: string): string {
+  return path.basename(filePath);
 }
 
-function removeDir(dirPath: string): Promise<void> {
-  return fs.emptyDir(dirPath);
+
+function removeTempFile(tempFilePath: string) {
+  fs.unlinkSync(tempFilePath);
 }
 
 function writeFile(fileNamePath: string, data: any) {
@@ -72,7 +74,6 @@ function writeFile(fileNamePath: string, data: any) {
   if (dirname) {
     ensureFolder(dirname);
   }
-
   fs.writeFile(fileNamePath, JSON.stringify(data), function (err) {
     if (err) throw err;
   });
@@ -81,3 +82,11 @@ function writeFile(fileNamePath: string, data: any) {
 function readFile(fileNamePath: string): Buffer {
   return fs.readFileSync(fileNamePath);
 }
+
+function removeDir(dirPath: string): Promise<void> {
+  if (dirPath.includes(tmpFolder)){
+    return fs.emptyDir(dirPath);
+  }
+}
+
+
