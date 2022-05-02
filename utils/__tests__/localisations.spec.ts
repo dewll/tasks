@@ -5,7 +5,6 @@ const path = 'Folder';
 const string = 'string_to_return';
 const number = 5;
 
-
 describe('LocalisationsUtils', () => {
   it('testing if localize string is gotting.', async () => {
     const mockFunctionToBeCalled = () => {};
