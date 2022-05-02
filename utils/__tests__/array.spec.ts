@@ -11,7 +11,7 @@ const stringInArray = ['a','b','k'];
 const stringToRemove = 'k';
 const stringToCheck = 'i';
 
-describe('FileUtils', ()=>{
+describe('ArrayUtils', ()=>{
 it('testing if  value is in array', () => {
     const isInArray = ArrayUtils.isInArray(value,array);
     expect(isInArray).toBe(true);
