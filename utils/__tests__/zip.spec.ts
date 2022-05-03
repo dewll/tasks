@@ -12,7 +12,7 @@ const newTempDir = tempDir + '\\testFolder';
           
 describe('zipUtil', () => {
     describe('zipFolder', () => {
-        it('check if folder compressed succsesfully', () => {
+        it('check if folder compressed succsesfully.', () => {
 
             if (!fs.existsSync(newTempDir)){
               fs.mkdirSync(newTempDir);
