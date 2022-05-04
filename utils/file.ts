@@ -15,6 +15,7 @@ export const FileUtils = {
   createTempFolder,
   tmpFolder,
 };
+export default FileUtils
 
 function tmpFolder(){
   return os.tmpdir();
