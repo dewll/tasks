@@ -43,7 +43,7 @@ export class PathTree {
       .map((str) => str.trim())
       .filter((str) => str);
   }
-
+  
   static generatePathTree(paths: string[], customPathSplitter?: (path: string) => string[]) {
     const root = new Map();
     for (const path of paths) {
