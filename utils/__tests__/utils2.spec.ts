@@ -5,7 +5,6 @@ const string = null;
 const number =  5;
 const array = []
 
-
 describe('UtilsUtils', () => {
   it('testing if errormessage was rejected was return.', async () => {
     await expect(UtilsUtils.rejectPromise(errormessage)).rejects.toMatch('HELLO');
@@ -13,7 +12,7 @@ describe('UtilsUtils', () => {
   it('testing if errormessage was resolve.', async () => {
     await expect(UtilsUtils.resolvePromise(errormessage)).resolves.toMatch('HELLO');
   });
-  it( 'testing if string is Null, Empty or Undefined', () => {
+  it( 'testing if string is Null, Empty or Undefined.', () => {
     const isStringNullEmptyOrUndefined = UtilsUtils.isStringNullEmptyOrUndefined(string)
     expect(isStringNullEmptyOrUndefined).toBe(true);
   });

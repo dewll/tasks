@@ -33,4 +33,10 @@ describe('RegexUtils', () => {
     expect(params.mediaId).toEqual('mediaID');
     expect(params.isStory).toEqual(false);
   });
+
+  it('testing if the path follow this syntax (/projects_content\/[^/]+\/(?:stories|scheduled_posts)\/[^/]+\/[^.]+\..+$/) and must include projects_content and stories or scheduled_posts', () => {
+    const filePath = 'projects_content/projectID/scheduled_posts/postID/mediaID/original.mp4';
+    const params = RegexUtils.isGridItemMediaStoragePath(filePath)
+    expect(params).toMatchObject({})
+  })
 });

@@ -4,7 +4,7 @@ import * as fs from 'fs-extra';
 import * as https from 'https';
 import { WriteStream } from 'fs';
 
-export const FileUtils = {
+const FileUtils = {
   createTempFilePath,
   createTempFile,
   removeTempFile,
@@ -15,6 +15,8 @@ export const FileUtils = {
   createTempFolder,
   tmpFolder,
 };
+
+export default FileUtils;
 
 function tmpFolder(){
   return os.tmpdir();
