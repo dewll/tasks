@@ -1,12 +1,21 @@
 import * as fs from 'fs-extra';
-import * as unzipper from 'unzipper';
+//import * as unzipper from 'unzipper';
 import FileUtils from './file';
-import archiver from 'archiver';
+// import archiver from 'archiver';
+const archiver = require('archiver');
 import { Logger } from './logger';
+// import * as os from 'os';
+const os = require('os');
 
+<<<<<<< HEAD
+export const ZipUtils = {
+  zipFolder,
+ // unzipFile,
+=======
 const ZipUtils = {
   zipFolder,
   unzipFile,
+>>>>>>> 63a9dd369c4ae6443d4de5e52b640bf8dd18dd65
 };
 export default ZipUtils;
 
@@ -29,6 +38,45 @@ function zipFolder(folderPath: string, fileOutputPath: string, logger?: Logger):
     });
     archive.pipe(fileOutputStream);
     archive.directory(folderPath, false);
+<<<<<<< HEAD
+    // archive.append('string cheese!', { name: 'file2.txt' });
+    archive.finalize();
+  });
+
+}
+// const tempDir = os.tmpdir();
+// const newTempDir = tempDir + '\\testFolder';
+// const ans = zipFolder(tempDir,newTempDir)
+// console.log(ans)
+
+// function unzipFile(zipFilePath: string, outputFolder: string, logger?: Logger): Promise<void> {
+//   logger?.logInfo('start unzipping', { zipFilePath, outputFolder });
+//   return new Promise((resolve, reject) => {
+//     fs.createReadStream(zipFilePath)
+//       .pipe(unzipper.Parse())
+//       .on('entry', (entry) => {
+//         if (entry.type === 'Directory') {
+//           logger?.logInfo(`log entry folder ${outputFolder}/${entry.path}`);
+//           FileUtils.ensureFolder(`${outputFolder}/${entry.path}`);
+//           entry.autodrain();
+//         } else {
+//           logger?.logInfo(`log entry file ${outputFolder}/${entry.path}`);
+//           const fileOutputStream = FileUtils.createTempFile(`${outputFolder}/${entry.path}`);
+//           entry.pipe(fileOutputStream).on('error', (error) => {
+//             logger?.logError('unzip failed', error);
+//             fileOutputStream.end();
+//             reject(error);
+//           });
+//         }
+//       })
+//       .on('close', resolve)
+//       .on('error', (error) => {
+//         logger?.logError('unzip failed', error);
+//         reject(error);
+//       });
+//   });
+// }
+=======
 
     archive.finalize();
   });
@@ -61,3 +109,4 @@ function unzipFile(zipFilePath: string, outputFolder: string, logger?: Logger): 
       });
   });
 }
+>>>>>>> 63a9dd369c4ae6443d4de5e52b640bf8dd18dd65
