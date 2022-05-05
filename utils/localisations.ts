@@ -1,12 +1,16 @@
 import * as admin from 'firebase-admin';
 import { Language } from '../../routes/legacy/bloc/models/languages';
-import { getLocalisedStringRef } from '../../routes/legacy/bloc/core/rtdb/rtdb';
-import { isNumberNullOrUndefined, isStringNullEmptyOrUndefined } from './utils';
+//import { getLocalisedStringRef } from '../../routes/legacy/bloc/core/rtdb/rtdb';
+import { isNumberNullOrUndefined, isStringNullEmptyOrUndefined } from './utils2';
 
 const localeMap = new Map<string, string>();
 
+export const LocalisationsUtils = {
+  getLocalisedString,
+  getStringFromNumericString
+}
 /** @deprecated */
-export async function getLocalisedString(
+async function getLocalisedString(
   rtdb: admin.database.Database,
   language: Language,
   localePath: string
@@ -23,6 +27,6 @@ export async function getLocalisedString(
 }
 
 /** @deprecated */
-export function getStringFromNumericString(string: string, number: number) {
+function getStringFromNumericString(string: string, number: number) {
   return isNumberNullOrUndefined(number) ? string : string.replace('%d', `${number}`);
 }

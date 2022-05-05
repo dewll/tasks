@@ -20,7 +20,7 @@ function resolvePromise<T>(data: T): Promise<T> {
   return Promise.resolve(data);
 }
 
-function isStringNullEmptyOrUndefined(string: string): boolean {
+export function isStringNullEmptyOrUndefined(string: string): boolean {
   return string === null || string === undefined || string === '';
 }
 
@@ -32,7 +32,7 @@ function isNotNullOrUndefined(o: any): boolean {
   return o !== null && o !== undefined;
 }
 
-function isNumberNullOrUndefined(o: number): boolean {
+export function isNumberNullOrUndefined(o: number): boolean {
   return o === null || o === undefined;
 }
 
