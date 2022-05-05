@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { isNullOrUndefined } from './utils';
+import { isNullOrUndefined } from './utils2';
 import { MAX_ALLOWED_SECONDS_FOR_USER_ACTIVITY } from '../../routes/legacy/http/get-remaining-time-for-deactivation.f';
 
 export function getThresholdFilteredArrayFromCollectionRef<T>(
