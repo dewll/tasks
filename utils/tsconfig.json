@@ -7,12 +7,17 @@
       "outFile": "../../built/local/tsc.js",
       "sourceMap": true,
       "strictNullChecks": false,
+ task/2-exception
       "types": [
         "reflect-metadata",
         "jest",
         "node"
         // ... your other types
       ],
+
+      "types": ["reflect-metadat", "jest"],
+      "typeRoots": ["./types", "./node_modules/@types"],
+ task/2-refactor-utils
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "**/*.spec.ts"]

@@ -15,6 +15,7 @@ const FileUtils = {
   createTempFolder,
   tmpFolder,
 };
+export default FileUtils
 
 export default FileUtils;
 
