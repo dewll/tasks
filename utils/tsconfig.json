@@ -6,7 +6,13 @@
       "preserveConstEnums": true,
       "outFile": "../../built/local/tsc.js",
       "sourceMap": true,
-      "strictNullChecks": false
+      "strictNullChecks": false,
+      "types": [
+        "reflect-metadata",
+        "jest",
+        "node"
+        // ... your other types
+      ],
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "**/*.spec.ts"]
