@@ -14,9 +14,18 @@ export class TestHelper {
     }
   };
 
-  static uploadTestFiles = async (destination: string, name: string, bucket: Bucket) => {
+// Original method to upload to google-cloud  S3 Bucket
+//   static uploadTestFiles = async (destination: string, name: string, bucket: Bucket) => {
+//     const localTestFilePath = `${os.tmpdir()}/${name}`;
+//     fs.writeFileSync(localTestFilePath, '');
+//     await bucket.upload(localTestFilePath, { destination: `${destination}/${name}` });
+//   };
+// } 
+ 
+// Creating a mock S3 bucket method
+  static uploadTestFiles = async (destination: string, name: string, bucket) => {
     const localTestFilePath = `${os.tmpdir()}/${name}`;
     fs.writeFileSync(localTestFilePath, '');
-    await bucket.upload(localTestFilePath, { destination: `${destination}/${name}` });
+    bucket.push(localTestFilePath, { destination: `${destination}/${name}` });
   };
-}
+} 
