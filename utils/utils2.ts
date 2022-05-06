@@ -24,7 +24,7 @@ export function isStringNullEmptyOrUndefined(string: string): boolean {
   return string === null || string === undefined || string === '';
 }
 
-function isNullOrUndefined(o: any): boolean {
+export function isNullOrUndefined(o: any): boolean {
   return o === null || o === undefined;
 }
 

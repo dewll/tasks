@@ -5,14 +5,24 @@
  * @param {number[]} array
  * @returns {boolean} true if the number is found, else false
  */
-import { isNullOrUndefined } from './utils';
+import { isNullOrUndefined } from './utils2';
 
-export function isInArray<T>(value: T, array: T[]): boolean {
+export const ArrayUtils = {
+  isInArray,
+  addItemInArray,
+  ascendingSort,
+  descendingSort,
+  getChunks,
+  removeStartsWithSameValue,
+  checkStartsWithSameValue,
+}
+
+function isInArray<T>(value: T, array: T[]): boolean {
   return array.indexOf(value) > -1;
 }
 
 // adds an item in array if it doesn't exist and returns resulting array
-export function addItemInArray<T>(value: T, array: T[]): T[] {
+function addItemInArray<T>(value: T, array: T[]): T[] {
   const index = array.findIndex((x) => x === value);
   if (index === -1) {
     array.push(value);
@@ -20,11 +30,11 @@ export function addItemInArray<T>(value: T, array: T[]): T[] {
   return array;
 }
 
-export function ascendingSort(a: number, b: number): number {
+function ascendingSort(a: number, b: number): number {
   return a - b;
 }
 
-export function descendingSort(a: number, b: number): number {
+function descendingSort(a: number, b: number): number {
   return b - a;
 }
 
@@ -34,7 +44,8 @@ export function descendingSort(a: number, b: number): number {
  * @param array
  * @param chunk
  */
-export function getChunks<T extends Array<string>>(array: T, chunk: number): T[] {
+
+function getChunks<T extends Array<string>>(array: T, chunk: number): T[] {
   const result: T[] = [];
   for (let i = 0, j = array.length; i < j; i += chunk) {
     const temp: T = array.slice(i, i + chunk) as T;
@@ -44,7 +55,7 @@ export function getChunks<T extends Array<string>>(array: T, chunk: number): T[]
 }
 
 // remove item starts with value
-export function removeStartsWithSameValue(value: string, array: string[]): string[] {
+function removeStartsWithSameValue(value: string, array: string[]): string[] {
   const index = array.findIndex((x) => !isNullOrUndefined(x) && x.startsWith(value));
   if (index !== -1) {
     array.splice(index, 1);
@@ -53,7 +64,7 @@ export function removeStartsWithSameValue(value: string, array: string[]): strin
 }
 
 // check item starts with value
-export function checkStartsWithSameValue(value: string, array: string[]) {
+function checkStartsWithSameValue(value: string, array: string[]) {
   const index = array.findIndex((x) => !isNullOrUndefined(x) && x.startsWith(value));
   return index !== -1;
 }
