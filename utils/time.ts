@@ -13,6 +13,20 @@ type DisplayFormat = 'DD MMM YYYY' | 'DD/MM/YYYY' | 'YYYY-MM-DD';
 
 const logger = new Logger();
 
+export const TimeUtils = {
+  getDisplayDate,
+  getDaysFrom,
+  getTimeStamp,
+  addDaysInDate,
+  dateInPastFromNow,
+  getDateFromString,
+  getDateFromNumber,
+  getDaysFromSeconds,
+  getCurrentDate,
+  getDiffTimeInterval,
+  toDateType,
+}
+
 /**
  * current time stamp in seconds
  * @returns {number}
@@ -29,7 +43,7 @@ export const convertToTimestamp = (n: number) => firestore.Timestamp.fromDate(ne
  */
 export const getCurrentTimeStampInMillis = () => Date.now();
 
-export function getDisplayDate(timeStamp: number = getCurrentTime(), format: DisplayFormat = 'DD MMM YYYY'): string {
+function getDisplayDate(timeStamp: number = getCurrentTime(), format: DisplayFormat = 'DD MMM YYYY'): string {
   return moment.unix(timeStamp).format(format);
 }
 
@@ -37,7 +51,7 @@ export const getUnixStartTime = () => unixStartTime.toDate();
 
 export const getFreshDeskTime = (timestamp: number): string => getDisplayDate(timestamp, freshDeskTimeFormat);
 
-export function getDaysFrom(timeStamp: number): string {
+function getDaysFrom(timeStamp: number): string {
   logger.logInfo(`timeStamp => ${timeStamp}`);
   const endDate = moment(timeStamp * MILLISECONDS_RATIO);
   return endDate.from(unixStartTime);
@@ -48,7 +62,7 @@ export function getDaysFrom(timeStamp: number): string {
  * @param {string} dateString
  * @returns {number}
  */
-export function getTimeStamp(dateString: string): number {
+function getTimeStamp(dateString: string): number {
   return moment(dateString, csvTimeStampFormat, true).unix();
 }
 
@@ -57,7 +71,7 @@ export function getTimeStamp(dateString: string): number {
  * @param date // subscription date
  * @param days // number of days need to add
  */
-export function addDaysInDate(date: Date, days: number): Date {
+function addDaysInDate(date: Date, days: number): Date {
   return moment(new Date(date.setDate(date.getDate() + days))).toDate();
 }
 
@@ -65,7 +79,7 @@ export function addDaysInDate(date: Date, days: number): Date {
  *
  * @param days // number of days in the past
  */
-export function dateInPastFromNow(days: number): Date {
+function dateInPastFromNow(days: number): Date {
   return moment().subtract(days, 'd').toDate();
 }
 
@@ -73,7 +87,7 @@ export function dateInPastFromNow(days: number): Date {
  * get date from string
  * @param date
  */
-export function getDateFromString(dateString: string): Date {
+function getDateFromString(dateString: string): Date {
   const date = moment(parseInt(dateString)).toDate();
   return isNaN(date as unknown as number) ? new Date(0) : date;
 }
@@ -82,33 +96,33 @@ export function getDateFromString(dateString: string): Date {
  * get date from number
  * @param date
  */
-export function getDateFromNumber(date: number): Date {
+function getDateFromNumber(date: number): Date {
   return moment(date * MILLISECONDS_RATIO).toDate();
 }
 
-export function getDaysFromSeconds(seconds: number) {
+function getDaysFromSeconds(seconds: number) {
   return seconds / (24 * 60 * 60);
 }
 
-export function getCurrentDate(): Date {
+function getCurrentDate(): Date {
   return new Date();
 }
 
 /**
  * time interval in seconds between starts of dates
  */
-export function getDiffTimeInterval(endDate: Date, startDate: Date) {
+function getDiffTimeInterval(endDate: Date, startDate: Date) {
   return moment(endDate).startOf('day').diff(moment(startDate).startOf('day'), 'days') * ONE_DAY;
 }
 
-export function toDateType(date: firestore.Timestamp | Date | null | undefined): Date {
+function toDateType(date: firestore.Timestamp | Date | null | undefined): Date {
   if (!date) {
     return new Date(0);
   }
-  let dateNative: Date | null = _.isObject(date) && 'toDate' in date ? date.toDate() : date;
+  let DateNative: Date | null = _.isObject(date) && 'toDate' in date ? date.toDate() : date;
 
-  if (isNaN(dateNative as any)) {
-    dateNative = null;
+  if (isNaN(DateNative as any)) {
+    DateNative = null;
   }
-  return dateNative ?? new Date(0);
+  return DateNative ?? new Date(0);
 }
