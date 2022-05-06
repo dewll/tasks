@@ -1,5 +1,10 @@
 import * as _ from 'lodash';
 
+export const JavaScriptHelperUtils = {
+  objectChangeDiff,
+  jsonStringifyFailTolerable,
+}
+
 /**
  * @param obj
  * @param objToCheck
@@ -7,7 +12,7 @@ import * as _ from 'lodash';
  * @param deepEqual perform deep equal check
  * @return object  object with all properties from obj that differ from objToCheck
  */
-export function objectChangeDiff(
+function objectChangeDiff(
   obj: object,
   objToCheck: object,
   placeHolderForDeletedProperties: any = undefined,
@@ -34,7 +39,7 @@ export function objectChangeDiff(
 
 export const randomInt = () => +Math.random().toString().slice(2);
 
-export function jsonStringifyFailTolerable(data: any, failText = '{error_during_serialization}') {
+function jsonStringifyFailTolerable(data: any, failText = '{error_during_serialization}') {
   try {
     return JSON.stringify(data);
   } catch (e) {
