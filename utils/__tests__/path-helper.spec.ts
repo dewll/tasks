@@ -1,5 +1,8 @@
 import { PathTree } from '../path-helper';
 
+const pathToSplit = 'Hello/World';
+const pathToGenerate = ['hello/word']
+
 describe('PathHelper', () => {
   it('path tree', () => {
     const tree = new PathTree(['music/rock', 'art']);
@@ -32,5 +35,13 @@ describe('PathHelper', () => {
     expect(() => {
       new PathTree(['// ']);
     }).toThrowError();
+  });
+  it('testing if path is split with respect to (/)', () => {
+    const defaultPathSplitter= PathTree.defaultPathSplitter(pathToSplit);
+    expect(defaultPathSplitter).toEqual(['Hello','World']);
+  });
+  it('testing if pathTree is generated and map to each other', () => {
+    const generatePathTree= PathTree.generatePathTree(pathToGenerate);
+    expect(generatePathTree).toMatchObject({})
   });
 });
