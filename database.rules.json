@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "UnitTests": {
+      ".read": "auth.uid !== null",
+      ".write": "auth.uid !== null",
+    },
+    "PublishedPost": {
+      ".read": "auth.uid !== null",
+      ".write": "auth.uid !== null"
+    },
+    ".read": true,
+    ".write": true
+  }
+}
