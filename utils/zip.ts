@@ -10,8 +10,8 @@ const ZipUtils = {
 };
 export default ZipUtils;
 
-function zipFolder(folderPath: string, fileOutputPath: string, logger?: Logger): Promise<void> {
-  const options = { zlib: { level: 9 } };
+async function zipFolder(folderPath: string, fileOutputPath: string, logger?: Logger): Promise<void> {
+  const options = { zlib: { level: 5 } };
   const archive = archiver.create('zip',options);
 
   return new Promise((resolve, reject) => {

@@ -14,6 +14,8 @@ const FileUtils = {
   getFolderPath,
   createTempFolder,
   tmpFolder,
+  ensureFolder,
+  writeFile
 };
 
 export default FileUtils;

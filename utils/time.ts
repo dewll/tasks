@@ -5,7 +5,7 @@ import { firestore } from 'firebase-admin';
 
 const csvTimeStampFormat = 'DD/MM/YYYY';
 const freshDeskTimeFormat = 'YYYY-MM-DD';
-const unixStartTime = moment.unix(0);
+//const unixStartTime = moment.unix(0);
 export const ONE_DAY = 3600 * 24;
 const MILLISECONDS_RATIO = 1000;
 
@@ -71,7 +71,7 @@ function getTimeStamp(dateString: string): number {
  * @param date // subscription date
  * @param days // number of days need to add
  */
-function addDaysInDate(date: Date, days: number): Date {
+export function addDaysInDate(date: Date, days: number): Date {
   return moment(new Date(date.setDate(date.getDate() + days))).toDate();
 }
 
