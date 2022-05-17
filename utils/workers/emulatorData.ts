@@ -40,7 +40,7 @@ const test = async () => {
     capital: true, population: 9000000,
     regions: ["kanto", "honshu"] });
     await setDoc(doc(citiesRef, "BJ"), {
-    name: "Beijing", state: null, country: "China",
+    name: "Beijing", state: null, country: "China.",
     capital: true, population: 21500000,
     regions: ["jingjinji", "hebei"] });
 }
