@@ -1,0 +1,11 @@
+node_modules
+path-helper.spec.ts
+regex-utils.spect.ts
+utils.spec.ts
+javascript-helper.ts
+jest.config.js
+babel.config.js
+path-helper.ts
+regex-utils.ts
+utils.ts
+file.spec.ts

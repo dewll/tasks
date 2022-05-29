@@ -1,0 +1,46 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint",
+      "blank-line",
+      "pep8-blank-lines",
+       "no-parameter-e"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+      "no-console": 2, // Remember, this means error! 
+      "indent":["error",2],
+      "blank-line/blank-line":"error",
+      "semi": [2, "always"],
+      "no-extra-semi": 2,
+       "comma-dangle": ["error", "always-multiline"],
+      "no-multiple-empty-lines": 2,
+      "pep8-blank-lines/pep8-blank-lines": 2,
+      "no-parameter-e/no-parameter-e": 2
+    }
+  }
+  
+  
+  
+  // {
+  //     "extends": [
+  //       "eslint:recommended",
+  //       "plugin:@typescript-eslint/recommended",
+  //       "airbnb",
+  //       "plugin:prettier/recommended",
+  //       "prettier/@typescript-eslint"
+  //     ],
+  //     "parser": "@typescript-eslint/parser",
+  //     "plugins": ["@typescript-eslint", "prettier"],
+  //     "rules": {
+  //       "prettier/prettier": "error",
+  //       "@typescript-eslint/indent": ["error", 2],
+  //       "@typescript-eslint/no-unused-vars": "error",
+  //       "@typescript-eslint/no-explicit-any": "error"
+  //     }
+  //   }
