@@ -98,78 +98,75 @@ describe('ContentProjectList', () => {
   describe('Wrapper', () => {
     describe('personalIds', () => {
       it('correctly generates personalIds list with empty list', async () => {
-        const projectList = {} as ContentProjectsList.Model;
-        const personalIds = ContentProjectsList.wrapper(projectList).personalIds;
+        const testList = {} as ContentProjectsList.Model;
+        const personalIds = ContentProjectsList.wrapper(testList).personalIds;
 
         expect(personalIds).toEqual([]);
       });
 
       it('correctly generates personalIds list with existing list', async () => {
-        const projectList_for_personalIds = {personal:['personalIds']} as ContentProjectsList.Model;
-        const personalIds = ContentProjectsList.wrapper(projectList_for_personalIds).personalIds;
+        const testList = {personal:['personalIds']} as ContentProjectsList.Model;
+        const personalIds = ContentProjectsList.wrapper(testList).personalIds;
         
         expect(personalIds).toEqual(['personalIds']);
-
       });
     });
     describe('sharedIds', () => {
       it('correctly generates sharedIds list with empty list', async () => {
-        const projectList = {} as ContentProjectsList.Model;
-        const sharedIds = ContentProjectsList.wrapper(projectList).sharedIds;
+        const testList = {} as ContentProjectsList.Model;
+        const sharedIds = ContentProjectsList.wrapper(testList).sharedIds;
 
         expect(sharedIds).toEqual([]);
       });
 
       it('correctly generates personalIds list with existing list', async () => {
-        const projectList_for_sharedIds = {shared:['sharedIds']} as ContentProjectsList.Model;
-        const sharedIds = ContentProjectsList.wrapper(projectList_for_sharedIds).sharedIds;
+        const testList = {shared:['sharedIds']} as ContentProjectsList.Model;
+        const sharedIds = ContentProjectsList.wrapper(testList).sharedIds;
         
         expect(sharedIds).toEqual(['sharedIds']);
-
       });
     });
     describe('allIds', () => {
       it('correctly generates allIds list with empty list', async () => {
-        const projectList = {} as ContentProjectsList.Model;
-        const allIds = ContentProjectsList.wrapper(projectList).allIds;
+        const testList = {} as ContentProjectsList.Model;
+        const allIds = ContentProjectsList.wrapper(testList).allIds;
 
         expect(allIds).toEqual([]);
       });
 
       it('correctly generates allIds list with existing list', async () => {
-        const projectList_for_allIds = {personal:['personalIds'], shared:['sharedIds']} as ContentProjectsList.Model;
-        const allIds = ContentProjectsList.wrapper(projectList_for_allIds).allIds;
+        const testList = {personal:['personalIds'], shared:['sharedIds']} as ContentProjectsList.Model;
+        const allIds = ContentProjectsList.wrapper(testList).allIds;
         
         expect(allIds).toEqual(['personalIds','sharedIds']);
-
       });
     });
     describe('isEmpty', () => {
       it('expecting is Empty to be true', async () => {
-        const projectList = {} as ContentProjectsList.Model;
-        const isEmpty = ContentProjectsList.wrapper(projectList).isEmpty;
+        const testList = {} as ContentProjectsList.Model;
+        const isEmpty = ContentProjectsList.wrapper(testList).isEmpty;
 
         expect(isEmpty).toEqual(true);
       });
 
       it('expecting is Empty to be false', async () => {
-        const projectList_for_allIds = {personal:['personalIds'], shared:['sharedIds']} as ContentProjectsList.Model;
-        const isEmpty = ContentProjectsList.wrapper(projectList_for_allIds).isEmpty;
+        const testList = {personal:['personalIds'], shared:['sharedIds']} as ContentProjectsList.Model;
+        const isEmpty = ContentProjectsList.wrapper(testList).isEmpty;
         
         expect(isEmpty).toEqual(false);
       });
     });
     describe('hasPersonal', () => {
       it('expecting hasPersonal to be true', async () => {
-        const projectList = {} as ContentProjectsList.Model;
-        const hasPersonal = ContentProjectsList.wrapper(projectList).hasPersonal;
+        const testList = {} as ContentProjectsList.Model;
+        const hasPersonal = ContentProjectsList.wrapper(testList).hasPersonal;
 
         expect(hasPersonal).toEqual(true);
       });
 
       it('expecting hasPersonal to be false', async () => {
-        const projectList_for_personalIds = {personal:['personalIds']} as ContentProjectsList.Model;
-        const hasPersonal = ContentProjectsList.wrapper(projectList_for_personalIds).hasPersonal;
+        const testList = {personal:['personalIds']} as ContentProjectsList.Model;
+        const hasPersonal = ContentProjectsList.wrapper(testList).hasPersonal;
         
         expect(hasPersonal).toEqual(false);
       });
@@ -182,10 +179,18 @@ describe('ContentProjectList', () => {
       });
 
       it('expecting isNotExisted to be false', async () => {
-        const projectList_for_personalIds = {personal:['personalIds']} as ContentProjectsList.Model;
-        const isNotExisted = ContentProjectsList.wrapper(projectList_for_personalIds).isNotExisted;
+        const testList = {personal:['personalIds']} as ContentProjectsList.Model;
+        const isNotExisted = ContentProjectsList.wrapper(testList).isNotExisted;
         
         expect(isNotExisted).toEqual(false);
+      });
+    });
+    describe('check if model exist', () => {
+      it('expecting checkModelIfExist to be undefined', async () => {
+        const testList = {shared:['personalIds']} as ContentProjectsList.Model;
+        const checkModel = ContentProjectsList.wrapper(testList).checkModelIfExist;
+        
+        expect(checkModel).toEqual("model exist");
       });
     });
   });

@@ -35,6 +35,17 @@ class ContentProjectsListWrapper {
   get isNotExisted(): Boolean {
     return !this.model;
   }
+  get checkModelIfExist(): string {
+    if(this.model.shared){
+        return 'model exist'
+    }
+    if(this.model.personal){
+      return "model exist"
+    }
+    else{
+      return undefined
+    }
+  }
 }
 
 class ContentProjectListFactory {
